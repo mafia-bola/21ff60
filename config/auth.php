@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -39,6 +39,14 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'pengunjung' => [
+            'driver' => 'session',
+            'provider' => 'pengunjung',
         ],
 
         'api' => [
@@ -69,6 +77,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'pengunjung' => [
+            'driver' => 'eloquent',
+            'model' => App\Pengunjung::class,
         ],
 
         // 'users' => [
