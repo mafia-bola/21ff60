@@ -15,19 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('desa_id')->unsigned();
-            $table->string('email')->unique();
-            $table->string('password');
             $table->string('nama');
-            $table->date('tgl_lahir');
-            $table->string('telepon');
             $table->string('alamat');
+            $table->date('tgl_lahir');
+            $table->string('tempat_lahir');
+            $table->string('username');
+            $table->string('password');
             $table->string('role');
             $table->boolean('status')->default(1);
+            $table->string('remember_token');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 

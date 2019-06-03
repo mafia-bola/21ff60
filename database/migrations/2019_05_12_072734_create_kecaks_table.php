@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdministrasisTable extends Migration
+class CreateKecaksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateAdministrasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrasi', function (Blueprint $table) {
+        Schema::create('kecak', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('desa_id')->unsigned();
-            $table->string('file');
-            $table->string('judul');
+            $table->string('nama_kecak');
+            $table->text('deskripsi');
+            $table->date('jadwal');
+            $table->string('status');
+            $table->string('foto');
+            $table->string('harga');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateAdministrasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administrasi');
+        Schema::dropIfExists('kecak');
     }
 }

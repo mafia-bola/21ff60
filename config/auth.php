@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'pengunjung' => [
+            'driver' => 'session',
+            'provider' => 'pengunjung',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -73,6 +77,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'pengunjung' => [
+            'driver' => 'eloquent',
+            'model' => App\Pengunjung::class,
         ],
 
         // 'users' => [

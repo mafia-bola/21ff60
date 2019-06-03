@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGambarDepansTable extends Migration
+class CreatePengunjungsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateGambarDepansTable extends Migration
      */
     public function up()
     {
-        Schema::create('gambar_depan', function (Blueprint $table) {
+        Schema::create('pengunjung', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('desa_id')->unsigned();
-            $table->string('gambar');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('email');  
+            $table->string('password');            
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateGambarDepansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gambar_depan');
+        Schema::dropIfExists('pengunjung');
     }
 }

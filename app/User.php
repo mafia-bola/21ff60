@@ -13,13 +13,15 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $table = 'user';
+    protected $fillable = ['nama','alamat','tempat_lahir','tgl_lahir','username','akses','password','status','role'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,17 +37,12 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 
-    public function kegiatan()
+    public function pemesanan()
     {
-        return $this->hasMany(Kegiatan::class);
-    }
-
-    public function desa()
-    {
-        return $this->belongsTo(Desa::class);
+        return $this->belongsTo(Pemesanan::class);
     }
 }

@@ -51,7 +51,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>CLOUD DESA</b></span>
+                <span class="logo-lg"><b>KECAK TICKETING</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -111,6 +111,7 @@
                     </div>
                 </div>  
                 <!-- sidebar menu: : style can be found in sidebar.less -->
+                {{-- //menentukan hak akses user --}}
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="" class="{{$template->menu == 'dashboard' ? 'active' : ''}}">
@@ -118,63 +119,33 @@
                             <i class="fa fa-home"></i> <span>Dashboard</span>                            
                         </a>
                     </li>
-                    @if(AppHelper::access(['Admin']))
-                    <li class="{{$template->menu == 'desa' ? 'active' : ''}}">
-                        <a href="{{route('admin.desa.index')}}"  >
+                @if(AppHelper::access(['admin']))
+                    <li class="{{$template->menu == 'tiket' ? 'active' : ''}}">
+                        <a href="{{route('admin.tiket.index')}}"  >
                             <i class="fa fa-map"></i> 
-                            <span>Manajemen Desa</span>
+                            <span>Manajemen Tiket</span>
+                        </a>
+                    </li> 
+                    <li class="{{$template->menu == 'pemesanan' ? 'active' : ''}}">
+                        <a href="{{route('admin.pemesanan.index')}}"  >
+                            <i class="fa fa-check "></i> 
+                            <span>Pemesanan Tiket</span>
+                        </a>
+                    </li> 
+                    <li class="{{$template->menu == 'pengunjung' ? 'active' : ''}}">
+                        <a href="{{route('admin.pengunjung.index')}}"  >
+                            <i class="fa fa-user"></i> 
+                            <span>Manajemen Pengunjung</span>
+                        </a>
+                    </li>
+                    <li class="{{$template->menu == 'user' ? 'active' : ''}}">
+                        <a href="{{route('admin.user.index')}}"  >
+                            <i class="fa fa-user"></i> 
+                            <span>Manajemen User</span>
                         </a>
                     </li>   
                 @endif
-                    {{-- //menentukan hak akses user --}}
-                    @if(AppHelper::access(['Admin']))
-                        <li class="{{$template->menu == 'user' ? 'active' : ''}}">
-                            <a href="{{route('admin.user.index')}}"  >
-                                <i class="fa fa-user"></i> 
-                                <span>Manajemen User</span>
-                            </a>
-                        </li>   
-                    @endif
-                    @if(AppHelper::access(['Kepala Desa','Petugas']))
-                        <li class="{{$template->menu == 'kegiatan' ? 'active' : ''}}">
-                            <a href="{{route('admin.kegiatan.index')}}"  >
-                                <i class="fa fa-group"></i> 
-                                <span>Manajemen Kegiatan</span>
-                            </a>
-                        </li>   
-                    @endif
-                    @if(AppHelper::access(['Kepala Desa']))
-                        <li class="{{$template->menu == 'petugas' ? 'active' : ''}}">
-                            <a href="{{route('admin.petugas.index')}}"  >
-                                <i class="fa fa-user"></i> 
-                                <span>Manajemen Petugas</span>
-                            </a>
-                        </li>   
-                    @endif
-                    @if(AppHelper::access(['Kepala Desa','Petugas']))
-                        <li class="{{$template->menu == 'penduduk' ? 'active' : ''}}">
-                            <a href="{{route('admin.penduduk.index')}}"  >
-                                <i class="fa fa-users"></i> 
-                                <span>Manajemen Penduduk</span>
-                            </a>
-                        </li>   
-                    @endif
-                    @if(AppHelper::access(['Petugas']))
-                        <li class="{{$template->menu == 'web' ? 'active' : ''}}">
-                            <a href="{{route('admin.web.index')}}"  >
-                                <i class="fa fa-globe"></i> 
-                                <span>Manajemen Web</span>
-                            </a>
-                        </li>   
-                    @endif
-                    @if(AppHelper::access(['Petugas']))
-                        <li class="{{$template->menu == 'administrasi' ? 'active' : ''}}">
-                            <a href="{{route('admin.administrasi.index')}}"  >
-                                <i class="fa fa-users"></i> 
-                                <span>Manajemen Administrasi</span>
-                            </a>
-                        </li>   
-                    @endif
+                {{-- //menentukan hak akses user --}}
                 </ul>
             </section>
             <!-- /.sidebar -->

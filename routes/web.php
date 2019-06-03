@@ -12,22 +12,25 @@
 */
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
-Route::get('/desa/{desa}', 'HomeController@index');
-Route::get('/home', function(){
-    return redirect('/');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
+// Route::get('/desa/{desa}', 'HomeController@index');
+// Route::get('/home', function(){
+//     return redirect('/');
+// });
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middleware' => 'auth'], function(){
     Route::get('/','DashboardController@index')->name('dashboard.index');
     Route::get('/user/profile','UserController@profile')->name('user.profile');
+    Route::get('/pemesanan','PemesananController@index')->name('pemesanan.index');
+    Route::get('/pemesanan/{id}/konfirmasi','PemesananController@showConfirm')->name('pemesanan.konfirmasi');
+    Route::get('/pengunjung','PengunjungController@index')->name('pengunjung.index');
+
     Route::resources([
-        '/user' => 'UserController',
-        '/desa' => 'DesaController',
-        '/kegiatan' => 'KegiatanController',
-        '/petugas' => 'PetugasController',
-        '/penduduk' => 'PendudukController',
-        '/web' => 'WebController',
-        '/administrasi' => 'AdministrasiController'
+        '/tiket' => 'TiketController',
+        '/user' => 'UserController'
     ]);
 });
+
+//3563-01-013367-53-7
+//pemesanan tiket -> nampilin tiket dari api, dan konfirmasi pembayaran
+//pengunjung -> menampilkan data pengunjung, ketika show maka menampilkan tiket yang pernah dipesan pengunjung

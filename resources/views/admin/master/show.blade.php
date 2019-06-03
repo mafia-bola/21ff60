@@ -52,7 +52,7 @@
                                                 <td>{{$item['label']}}</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <a href="{{asset($data->{$item['name']})}}" target="_blank">{{$data->{$item['name']} }}</a>
+                                                    <a class="btn btn-primary btn-sm" href="{{asset($data->{$item['name']})}}" target="_blank"><i class="fa fa-eye"></i> Lihat File</a>
                                                 </td>
                                             </tr>
                                             @else
