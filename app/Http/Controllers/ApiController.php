@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pengunjung;
+use App\Kecak;
+use App\Pemesanan;
 use Hash;
 class ApiController extends Controller
 {
@@ -12,7 +14,7 @@ class ApiController extends Controller
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
         Pengunjung::insert($data);
-        return response()->json($data);
+        return response()->json(['status' => 'sukses', 'pengunjung' => $data]);
     }
 
     public function login(Request $request)
@@ -28,4 +30,27 @@ class ApiController extends Controller
             return response()->json(['status' => '0','message' => 'Email tidak ditemukan']);
         }
     }
+
+    public function getTiketKecak(Request $request)
+    {
+        $data = Kecak::select('*');
+        return response()->json(['info' => 'aktif', 'kecak' => $data]);
+    }
+
+    public function getPengunjung(Request $request, $id_pengunjung)
+    {
+        $data = Pengunjung::select('*')
+        ->join('kecak','kecak.id','=','pengunjung.id')
+        ->where('email', $id_pengunjung)->get();
+        return response()->json(['info' => 'tersedia', 'kecak' => $data]);
+    }
+
+    // public function getPemesanan(Request $request, $id_pengunjung)
+    // {
+    //     $data = Pemesanan::select('*')
+    //     ->join('pengunjung','pengunjung.id','=','pemesanan.pengunjung_id')
+    //     ->join('kecak','kecak.id','=','pemesanan.kecak_id')
+    //     ->where('pemesanan.pengunjung_id', $id_pengunjung)->get();
+    //     return response()->json(['info' => 'aktif', 'kecak' => $data]);
+    // }
 }
