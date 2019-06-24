@@ -33,7 +33,7 @@ class ApiController extends Controller
             'harga'=>$request->harga,
             'total'=>$request->total
         ]);
-        return response()->json($Pemesanan);
+        return response()->json(['status' => 'sukses', 'pemesanan' => $Pemesanan]);
     }
 
     public function konfirmasiPesan(Request $request, $id)
@@ -43,7 +43,11 @@ class ApiController extends Controller
             'no_rekening'=>$request->no_rekening,
             'nama_bank'=>$request->nama_bank
         ]);
-        return response()->json($Pemesanan);
+        if($Pemesanan){
+            return response()->json(['status' => 'sukses', 'konfirmasi' => $Pemesanan]);
+        } else {
+            return response()->json(['status' => 'gagal']);
+        }
     }
 
     public function login(Request $request)
