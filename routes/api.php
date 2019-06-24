@@ -21,4 +21,6 @@ Route::post('auth/register','ApiController@register');
 Route::post('auth/login','ApiController@login');
 Route::get('tiket/','ApiController@getTiketKecak');
 Route::get('pengunjung/{id}','ApiController@getPengunjung');
-// Route::get('pemesanan/{id}','ApiController@getPemesanan');
+Route::get('pesan/{id}', 'ApiController@getPesan');
+Route::post('pemesanan/', 'ApiController@setPesan');
+Route::post('konfirmasi/{id}', 'ApiController@konfirmasiPesan');

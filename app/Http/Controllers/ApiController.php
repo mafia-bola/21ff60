@@ -17,6 +17,35 @@ class ApiController extends Controller
         return response()->json(['status' => 'sukses', 'pengunjung' => $data]);
     }
 
+    public function getPesan(Request $request, $id)
+    {
+        $data = Pemesanan::where('pengunjung_id',$id)->get();
+        return response()->json(['data' => $data]);
+    }
+
+    public function setPesan(Request $request)
+    {
+        $Pemesanan = Pemesanan::create([
+            'pengunjung_id'=>$request->pengunjung_id,
+            'kecak_id'=>$request->kecak_id,
+            'tanggal_pesan'=>$request->tanggal_pesan,
+            'jumlah'=>$request->jumlah,
+            'harga'=>$request->harga,
+            'total'=>$request->total
+        ]);
+        return response()->json($Pemesanan);
+    }
+
+    public function konfirmasiPesan(Request $request, $id)
+    {
+        $Pemesanan = Pemesanan::find($id)->update([
+            'bukti_transfer'=>$request->bukti_transfer,
+            'no_rekening'=>$request->no_rekening,
+            'nama_bank'=>$request->nama_bank
+        ]);
+        return response()->json($Pemesanan);
+    }
+
     public function login(Request $request)
     {
         $data = Pengunjung::where('email',$request->email)->get();
@@ -33,8 +62,8 @@ class ApiController extends Controller
 
     public function getTiketKecak(Request $request)
     {
-        $data = Kecak::select('*');
-        return response()->json(['info' => 'aktif', 'kecak' => $data]);
+        $data = Kecak::all();
+        return response()->json(['info' => 'tersedia', 'kecak' => $data]);
     }
 
     public function getPengunjung(Request $request, $id_pengunjung)
@@ -44,13 +73,4 @@ class ApiController extends Controller
         ->where('email', $id_pengunjung)->get();
         return response()->json(['info' => 'tersedia', 'kecak' => $data]);
     }
-
-    // public function getPemesanan(Request $request, $id_pengunjung)
-    // {
-    //     $data = Pemesanan::select('*')
-    //     ->join('pengunjung','pengunjung.id','=','pemesanan.pengunjung_id')
-    //     ->join('kecak','kecak.id','=','pemesanan.kecak_id')
-    //     ->where('pemesanan.pengunjung_id', $id_pengunjung)->get();
-    //     return response()->json(['info' => 'aktif', 'kecak' => $data]);
-    // }
 }
