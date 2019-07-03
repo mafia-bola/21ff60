@@ -20,7 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('auth/register','ApiController@register');
 Route::post('auth/login','ApiController@login');
 Route::get('tiket/','ApiController@getTiketKecak');
-Route::get('pengunjung/{id}','ApiController@getPengunjung');
+Route::get('pengunjung/','ApiController@getPengunjung');
 Route::get('pesan/{id}', 'ApiController@getPesan');
-Route::post('pemesanan/', 'ApiController@setPesan');
+Route::post('pemesanan', 'ApiController@setPesan');
 Route::post('konfirmasi/{id}', 'ApiController@konfirmasiPesan');
+Route::get('catatan/{id}', 'ApiController@getHistory');
