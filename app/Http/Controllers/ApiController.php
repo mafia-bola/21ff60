@@ -45,7 +45,6 @@ class ApiController extends Controller
     public function konfirmasiPesan(Request $request, $id)
     {
         $file_name = 'image_'.time().".png";
-        // $path = base64_decode($request->bukti_transfer)->store('public/files_kecak');
         Storage::disk('public')->put($file_name,base64_decode($request->bukti_transfer));
         $pemesanan = Pemesanan::find($id)->update([
             'bukti_transfer'=>$file_name,
