@@ -61,8 +61,9 @@ class ApiController extends Controller
 
     public function getHistory(Request $request, $id)
     {
-        $data = Pemesanan::select('*')
+        $data = Pemesanan::select('pemesanan.*','kecak.foto','kecak.nama_kecak')
         ->where('pengunjung_id',$id)
+        ->join('kecak', 'kecak.id', '=', 'pemesanan.kecak_id')
         ->where('pemesanan.status','1')->get();
         return response()->json(['status' => 'tersedia','data' => $data]);
     }
