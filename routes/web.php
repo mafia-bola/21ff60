@@ -23,7 +23,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     Route::get('/user/profile','UserController@profile')->name('user.profile');
     Route::get('/pemesanan','PemesananController@index')->name('pemesanan.index');
     Route::get('/pemesanan/{id}/konfirmasi','PemesananController@showConfirm')->name('pemesanan.konfirmasi');
+    Route::post('/pemesanan/{id}/update','PemesananController@ConfirmTicket')->name('pemesanan.update');
     Route::get('/pengunjung','PengunjungController@index')->name('pengunjung.index');
+    Route::get('/pengunjung/{id}/detail','PengunjungController@show')->name('pengunjung.detail');
 
     Route::resources([
         '/tiket' => 'TiketController',

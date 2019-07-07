@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\AppHelper;
+use App\Helpers\Alert;
 use App\Pemesanan;
+use Carbon\Carbon;
+use Auth;
+
 use DB;
 
 class PemesananController extends Controller
@@ -55,5 +60,16 @@ class PemesananController extends Controller
                                       ->get()->first();
         $template = (object) $this->template;
         return view('admin.pemesanan.konfirmasi',compact('template','data'));
+    }
+
+    public function ConfirmTicket(Request $request, $id)
+    {
+        Pemesanan::find($id)->update([
+            'status' => 1,
+            'user_id' => $request->user_id
+        ]);
+
+        Alert::make('success','Berhasil Konfirmasi Tiket A/n '.$request->nama_pengunjung);
+        return redirect(route($this->template['route'].'.index'));
     }
 }

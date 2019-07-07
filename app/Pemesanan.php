@@ -19,7 +19,7 @@ class Pemesanan extends Model
 
     public function kecak()
     {
-        return $this->hasMany(Kecak::class);
+        return $this->hasOne(Kecak::class);
     }
 
     public function pengunjung()

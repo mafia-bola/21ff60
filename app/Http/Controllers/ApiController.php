@@ -22,8 +22,10 @@ class ApiController extends Controller
 
     public function getPesan(Request $request, $id)
     {
-        $data = Pemesanan::where('pengunjung_id',$id)
-        ->where('status','0')->get();
+        $data = Pemesanan::select('pemesanan.*','kecak.foto','kecak.nama_kecak')
+        ->where('pengunjung_id',$id)
+        ->join('kecak', 'kecak.id', '=', 'pemesanan.kecak_id')
+        ->where('pemesanan.status','0')->get();
         return response()->json(['status' => 'tersedia','data' => $data]);
     }
 
