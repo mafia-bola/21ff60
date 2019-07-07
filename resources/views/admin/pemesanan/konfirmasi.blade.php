@@ -77,7 +77,7 @@
                                     <tr>
                                         <td>Bukti Pembayaran</td>
                                         <td>:</td>
-                                        <td><a href="{{asset($data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
+                                        <td><a href="{{asset('storage/'.$data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
                                     </tr>
                                     <tr>                                        
                                         <td colspan="3">
