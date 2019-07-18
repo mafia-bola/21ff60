@@ -9,6 +9,10 @@ use App\Helpers\Alert;
 use App\Pemesanan;
 use Carbon\Carbon;
 use Auth;
+use App\Templates\Ticket;
+use App\Jobs\SendEmailNotification;
+use Mail;
+use App\Mail\MailNotification;
 
 use DB;
 
@@ -64,12 +68,36 @@ class PemesananController extends Controller
 
     public function ConfirmTicket(Request $request, $id)
     {
+        $this->SendEmailNotification($id);
         Pemesanan::find($id)->update([
             'status' => 1,
             'user_id' => $request->user_id
         ]);
+        
+        $this->cetakTicket($id);
+        
 
         Alert::make('success','Berhasil Konfirmasi Tiket A/n '.$request->nama_pengunjung);
         return redirect(route($this->template['route'].'.index'));
+    }
+
+    public function sendEmailNotification($id)
+    {
+        $pemesanan = Pemesanan::where('pemesanan.id',$id)->select('pemesanan.id as ps_id','pemesanan.*','pengunjung.*','kecak.*')
+                                ->join('pengunjung','pengunjung.id','=','pemesanan.pengunjung_id')
+                                ->join('kecak','kecak.id','=','pemesanan.kecak_id')
+                                ->firstOrFail();
+                                
+        Mail::to($pemesanan->email)->send(new MailNotification($pemesanan->nama, $pemesanan->jadwal_kecak, $pemesanan->total, $pemesanan->jumlah, $pemesanan->nama_kecak));
+    }
+
+    public function cetakTicket($id)
+    {
+        $pemesanan = Pemesanan::where('pemesanan.id',$id)->select('pemesanan.id as ps_id','pemesanan.*','pengunjung.*','kecak.*')
+                                ->join('pengunjung','pengunjung.id','=','pemesanan.pengunjung_id')
+                                ->join('kecak','kecak.id','=','pemesanan.kecak_id')
+                                ->firstOrFail();
+        $temp = new Ticket($pemesanan);
+        return $temp->render();
     }
 }

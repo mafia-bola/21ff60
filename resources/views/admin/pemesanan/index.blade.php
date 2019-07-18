@@ -61,7 +61,9 @@
                                         </td>
                                         <td>
                                             @if($value->status_pesan == 0)
-                                                <a href="{{route("$template->route".'.konfirmasi',[$value->pemesanan_id])}}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Konfirmasi</a>
+                                                <a href="{{route("$template->route".'.konfirmasi',[$value->pemesanan_id])}}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-pencil"></i> Konfirmasi</a>
+                                            @else
+                                                <a href="{{route("$template->route".'.konfirmasi',[$value->pemesanan_id])}}" class="btn btn-success btn-sm btn-block"><i class="fa fa-file-text"></i> Detail Ticket</a>
                                             @endif
                                         </td>
                                     </tr>

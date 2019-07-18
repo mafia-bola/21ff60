@@ -77,18 +77,20 @@
                                     <tr>
                                         <td>Bukti Pembayaran</td>
                                         <td>:</td>
-                                        <td><a href="{{asset('storage/'.$data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
+                                        <td><a href="{{asset($data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
                                     </tr>
-                                    <tr>                                        
-                                        <td colspan="3">
-                                            <form action="{{route("$template->route".'.update',[$data->id])}}" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" value="{{$data->nama_pengunjung}}" name="nama_pengunjung">
-                                                <input type="hidden" value="{{Auth::guard('admin')->user()->id}}" name="id_user">
-                                                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-pencil"></i> Konfirmasi Pembayaran</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    @if($data->status == 0)               
+                                        <tr>           
+                                            <td colspan="3">
+                                                <form action="{{route("$template->route".'.update',[$data->id])}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$data->nama_pengunjung}}" name="nama_pengunjung">
+                                                    <input type="hidden" value="{{Auth::guard('admin')->user()->id}}" name="id_user">
+                                                    <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa fa-pencil"></i> Konfirmasi Pembayaran</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif    
                                 </tbody>
                             </table>
                         </div>
