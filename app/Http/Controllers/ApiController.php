@@ -69,7 +69,8 @@ class ApiController extends Controller
 
     public function login(Request $request)
     {
-        $data = Pengunjung::where('email',$request->email)->get();
+        $data = Pengunjung::select('*')
+        ->where('email',$request->email)->get();
         if($data->count() > 0){      
             if(Hash::check($request->password,$data->first()->password)){
                 return response()->json(['status' => '1','pengunjung' => $data]);
