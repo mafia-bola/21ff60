@@ -24,11 +24,17 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     Route::get('/pemesanan','PemesananController@index')->name('pemesanan.index');
     Route::get('/pemesanan/{id}/konfirmasi','PemesananController@showConfirm')->name('pemesanan.konfirmasi');
     Route::post('/pemesanan/{id}/update','PemesananController@ConfirmTicket')->name('pemesanan.update');
+<<<<<<< HEAD
     Route::get('/pemesanan/{id}/cetak_pdf','PemesananController@cetakTicket')->name('pemesanan.cetak_tiket');
     Route::get('/pengunjung','PengunjungController@index')->name('pengunjung.index');
     Route::get('/pengunjung/{id}/detail','PengunjungController@show')->name('pengunjung.detail');
 
 
+=======
+    Route::get('/pengunjung','PengunjungController@index')->name('pengunjung.index');
+    Route::get('/pengunjung/{id}/detail','PengunjungController@show')->name('pengunjung.detail');
+
+>>>>>>> 9b8280e170758c7b11ea35e21179e04f362ac87d
     Route::resources([
         '/tiket' => 'TiketController',
         '/user' => 'UserController'
