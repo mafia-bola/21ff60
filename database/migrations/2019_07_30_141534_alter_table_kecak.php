@@ -13,8 +13,8 @@ class AlterTableKecak extends Migration
      */
     public function up()
     {
-        Schema::table('kecak', function(Blueprint $table){
-            $table->string('jadwal');            
+        Schema::table('kecak', function (Blueprint $table) {
+            $table->string('jadwal', 50)->change();
         });
     }
 

@@ -47,7 +47,7 @@ class Ticket
             'pengunjung' => ucwords($this->pemesanan->nama),
             'alamat_pengunjung' => ucwords($this->pemesanan->alamat),
             'email_pengunjung' => ucwords($this->pemesanan->email),
-            'jadwal_kecak' => date("d F Y", strtotime($this->pemesanan->jadwal)) ,
+            'jadwal_kecak' => $this->pemesanan->jadwal,
             'nama_kecak' => ucwords($this->pemesanan->nama_kecak)
         ])->render();
 
