@@ -29,7 +29,8 @@ class TiketController extends Controller
         return [
             ['label' => 'Nama', 'name' => 'nama_kecak','view_index' => true],
             ['label' => 'Deskripsi','name' => 'deskripsi','type' => 'textarea'],
-            ['label' => 'Jadwal','name' => 'jadwal', 'type' => 'datepicker', 'view_index' => true],
+            ['label' => 'Jadwal', 'name' => 'jadwal','view_index' => true],
+            // ['label' => 'Jadwal','name' => 'jadwal', 'type' => 'datepicker', 'view_index' => true],
             ['label' => 'Status','name' => 'status', 'type' => 'select','option' => $status, 'view_index' => true],
             ['label' => 'Harga','name' => 'harga','type' => 'number', 'view_index' => true],
             ['label' => 'Foto','name' => 'foto', 'type' => 'file'],
@@ -64,12 +65,12 @@ class TiketController extends Controller
         ]);
 
         $path = $request->foto->store('public/files_kecak');
-        
+
         Kecak::create([
             'nama_kecak' => $request->nama_kecak,
             'jadwal' => $request->jadwal,
             'status' => $request->status,
-            'foto' => $path,
+            'foto' => '/storage/files_kecak/'.$request->foto->hashname(),
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
         ]);
