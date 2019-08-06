@@ -40,6 +40,7 @@ class Ticket
     {
         $html_resource = view($this->template_path)->with([
             'id' => strtoupper($this->pemesanan->id),
+            'kode_tiket' => '#'.str_pad($this->pemesanan->id,6,"0",STR_PAD_LEFT),
             'tanggal_pesan' => date("d F Y", strtotime($this->pemesanan->tanggal_pesan)),
             'jumlah_tiket' => $this->pemesanan->jumlah,
             'harga_tiket' => $this->pemesanan->harga,

@@ -11,6 +11,11 @@
     </header>
     <table style="margin-left:0px;padding-left:0px">
       <tr>
+          <td style="text-align:left">Kode Tiket</td>
+          <td>:</td>
+          <td style="text-align:left">{{$kode_tiket}}</td>
+      </tr>
+      <tr>
           <td style="text-align:left">Pengunjung</td>
           <td>:</td>
           <td style="text-align:left">{{$pengunjung}}</td>
