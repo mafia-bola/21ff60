@@ -25,3 +25,4 @@ Route::get('pesan/{id}', 'ApiController@getPesan');
 Route::post('pemesanan', 'ApiController@setPesan');
 Route::post('konfirmasi/{id}', 'ApiController@konfirmasiPesan');
 Route::get('catatan/{id}', 'ApiController@getHistory');
+Route::post('batalpesan/{id}', 'ApiController@batalPesan');
