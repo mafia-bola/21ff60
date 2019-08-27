@@ -83,7 +83,7 @@
                                     @foreach($pemesanan as $key => $value)
                                         <tr>
                                             <td>{{$no}}</td>
-                                            <td>{{$value->nama_kecak.' / '.date("d F Y", strtotime($value->jadwal))}}</td>
+                                            <td>{{$value->nama_kecak.' / '.$value->jadwal}}</td>
                                             <td>{{$value->harga}}</td>
                                             <td>{{ date("d F Y", strtotime($value->tanggal_pesan))}}</td>
                                             <td>{{$value->jumlah}} tiket</td>

@@ -81,7 +81,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="{{route('admin.user.profile')}}" class="btn btn-default btn-flat">Profile</a>
+                                        <!-- <a href="{{route('admin.user.profile')}}" class="btn btn-default btn-flat">Profile</a> -->
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="$('#frmLogout').submit()">Logout</a>

@@ -70,7 +70,7 @@ class TiketController extends Controller
             'nama_kecak' => $request->nama_kecak,
             'jadwal' => $request->jadwal,
             'status' => $request->status,
-            'foto' => '/storage/files_kecak/'.$request->foto->hashname(),
+            'foto' => 'public/storage/files_kecak/'.$request->foto->hashname(),
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
         ]);
@@ -114,7 +114,7 @@ class TiketController extends Controller
             'nama_kecak' => $request->nama_kecak,
             'jadwal' => $request->jadwal,
             'status' => $request->status,
-            'foto' => $path,
+            'foto' => 'public/storage/files_kecak/'.$request->foto->hashname(),
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
         ]);

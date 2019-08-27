@@ -52,7 +52,7 @@
                                                 <td>{{$item['label']}}</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <a class="btn btn-primary btn-sm" href="{{url($data->{$item['name']})}}" target="_blank"><i class="fa fa-eye"></i> Lihat File</a>
+                                                    <a class="btn btn-primary btn-sm" href="{{url(substr($data->{$item['name']},7))}}" target="_blank"><i class="fa fa-eye"></i> Lihat File</a>
                                                 </td>
                                                 {{-- asset($data->{$item['name']}) --}}
                                             </tr>
@@ -60,7 +60,7 @@
                                             <tr>
                                                 <td>{{$item['label']}}</td>
                                                 <td>:</td>
-                                                <td>{!! $data->{$item['name']} !!}</td>
+                                                <td>{!! $item['name'] != 'status' ? $data->{$item['name']} : ($item['name'] == 1 ? 'Aktif' : 'Tidak Aktif') !!}</td>
                                             </tr>
                                             @endif
                                         @endforeach

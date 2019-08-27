@@ -45,9 +45,14 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>KodeTiket</td>
+                                        <td>:</td>
+                                        <td>{{'#'.str_pad($data->id,6,"0",STR_PAD_LEFT)}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Kecak Yang Dipesan / Jadwal</td>
                                         <td>:</td>
-                                        <td>{{$data->nama_kecak.' / '.date("d F Y ", strtotime($data->jadwal_kecak))}}</td>
+                                        <td>{{$data->nama_kecak." / $data->jadwal_kecak"}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nama Pengunjung</td>
@@ -77,7 +82,7 @@
                                     <tr>
                                         <td>Bukti Pembayaran</td>
                                         <td>:</td>
-                                        <td><a href="{{url('storage/files_kecak/'.$data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
+                                        <td><a href="{{url('storage/'.$data->bukti_transfer)}}" target="blank" alt="Image" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Bukti Transfer</a></td>
                                     </tr>
                                     @if($data->status == 0)               
                                         <tr>           

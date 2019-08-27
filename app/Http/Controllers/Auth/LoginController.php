@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Helpers\Alert;
+use App\User;
 use Auth;
 class LoginController extends Controller
 {
@@ -44,9 +45,13 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-
+        if(User::where('username',$request->username)->get()->first()->status == 'Tidak Aktif'){
+            Alert::make('danger','User tidak aktif.');
+            return back(); 
+        }
         if (Auth::guard('admin')->attempt($credentials)){
-            \Log::info('Success Login');
+            // \Log::info('Success Login');
+            
             return redirect()->intended(route('admin.dashboard.index'));
         }else {
             Alert::make('danger','Pastikan username dan password benar.');
