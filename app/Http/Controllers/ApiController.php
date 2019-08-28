@@ -23,10 +23,16 @@ class ApiController extends Controller
 
     public function getPesan(Request $request, $id)
     {
+<<<<<<< HEAD
         $data = Pemesanan::select('pemesanan.*','kecak.foto','kecak.nama_kecak')
         ->where('pengunjung_id',$id)
         ->join('kecak', 'kecak.id', '=', 'pemesanan.kecak_id')
         ->where('pemesanan.status','0')->get();
+=======
+        $data = Pemesanan::select('*')
+        ->where('pengunjung_id',$id)
+        ->where('status','0')->get();
+>>>>>>> 4980ec7877b162e274737ecf2a856718bdad8a7e
         return response()->json(['status' => 'tersedia','data' => $data]);
     }
 
@@ -45,6 +51,7 @@ class ApiController extends Controller
 
     public function konfirmasiPesan(Request $request, $id)
     {
+<<<<<<< HEAD
         $data = DB::transaction(function() use ($request,$id){
             $file_name = 'image_'.time().".png";
             Storage::disk('public')->put($file_name,base64_decode($request->bukti_transfer));
@@ -56,6 +63,17 @@ class ApiController extends Controller
            
         });
         if($data){
+=======
+        $file_name = 'image_'.time().".png";
+        // $path = base64_decode($request->bukti_transfer)->store('public/files_kecak');
+        Storage::disk('public')->put($file_name,base64_decode($request->bukti_transfer));
+        $pemesanan = Pemesanan::find($id)->update([
+            'bukti_transfer'=>$file_name,
+            'no_rekening'=>$request->no_rekening,
+            'nama_bank'=>$request->nama_bank
+        ]);
+        if($pemesanan){
+>>>>>>> 4980ec7877b162e274737ecf2a856718bdad8a7e
             return response()->json(['status' => 'sukses', 'konfirmasi' => $pemesanan]);
         } else {
             return response()->json(['status' => 'gagal']);
@@ -65,10 +83,16 @@ class ApiController extends Controller
 
     public function getHistory(Request $request, $id)
     {
+<<<<<<< HEAD
         $data = Pemesanan::select('pemesanan.*','kecak.foto','kecak.nama_kecak')
         ->where('pengunjung_id',$id)
         ->join('kecak', 'kecak.id', '=', 'pemesanan.kecak_id')
         ->where('pemesanan.status','1')->get();
+=======
+        $data = Pemesanan::select('*')
+        ->where('pengunjung_id',$id)
+        ->where('status','1')->get();
+>>>>>>> 4980ec7877b162e274737ecf2a856718bdad8a7e
         return response()->json(['status' => 'tersedia','data' => $data]);
     }
 
@@ -98,4 +122,15 @@ class ApiController extends Controller
         $data = Pengunjung::all();
         return response()->json(['info' => 'tersedia', 'kecak' => $data]);
     }
+
+    public function batalPesan(Request $request, $id)
+    {
+        $data = Pemesanan::where('pemesanan.id', $id)->update(['status' => 2]);
+        if($data){
+            return response()->json(['status' => 'sukses']);
+        } else {
+            return response()->json(['status' => 'gagal']);
+        }
+    }
+
 }
