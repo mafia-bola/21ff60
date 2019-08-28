@@ -59,7 +59,7 @@
                                             <td>
                                                 <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>
-                                                <!-- <a href="#" class="btn btn-danger btn-sm" onclick="confirm('Lanjutkan ?') ? $('#frmDelete{{$row->id}}').submit() : ''">Hapus</a> -->
+                                                <a href="#" class="btn btn-danger btn-sm" onclick="confirm('Lanjutkan ?') ? $('#frmDelete{{$row->id}}').submit() : ''">Hapus</a>
                                                 <form action="{{route("$template->route".'.destroy',[$row->id])}}" method="POST" id="frmDelete{{$row->id}}">
                                                     {{ csrf_field() }}
                                                     @method('DELETE')

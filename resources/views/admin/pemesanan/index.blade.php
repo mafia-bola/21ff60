@@ -55,8 +55,10 @@
                                         <td>
                                             @if($value->status_pesan == 0)
                                                 Belum Terkonfirmasi
-                                            @else 
+                                            @elseif($value->status_pesan == 1)
                                                 Terkonfirmasi
+                                            @elseif($value->status_pesan == 2)
+                                                Pemesanan Dibatalkan    
                                             @endif
                                         </td>
                                         <td>

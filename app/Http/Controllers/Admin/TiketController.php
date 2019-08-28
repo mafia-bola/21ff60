@@ -127,8 +127,8 @@ class TiketController extends Controller
 
     public function destroy($id)
     {
-        // Kecak::find($id)->delete();
-        // Alert::make('success','Berhasil hapus data');
-        // return redirect(route($this->template['route'].'.index'));
+        Kecak::find($id)->delete();
+        Alert::make('success','Berhasil hapus data');
+        return redirect(route($this->template['route'].'.index'));
     }
 }
